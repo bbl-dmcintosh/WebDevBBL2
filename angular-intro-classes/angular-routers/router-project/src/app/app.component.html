@@ -1,0 +1,15 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Dave's Awesome Router Module Project</h1>
+    <p class="lead">Click the buttons to see how the router module can be utilized.</p>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+    <a  class="btn btn-light" [routerLink]="['/light', 'Light']">Apply Light</a>
+    <a  class="btn btn-dark" [routerLink]="['/dark', 'Dark']">Apply Dark</a>
+
+</div>
+
+<router-outlet></router-outlet>

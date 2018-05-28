@@ -1,0 +1,33 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Atm Project</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+<form [formGroup]="myForm" (ngSubmit)="doLogin()">
+    <ion-list>
+      <ion-label>Account Number</ion-label>
+      <ion-item>
+        <input type="text" placeholder="Account Number" formControlName="accountNumber">
+      </ion-item>
+      <ion-label>Pin Number</ion-label>
+      <ion-item>
+        <input type="password" placeholder="Pin Number" formControlName="pinNumber">
+      </ion-item>
+      <div>
+        <button ion-button black type="submit" [disabled]="!myForm.valid">Login</button>
+      </div>
+    </ion-list>
+</form>
+
+</ion-content>
