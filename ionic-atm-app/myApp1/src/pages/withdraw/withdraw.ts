@@ -39,25 +39,31 @@ export class WithdrawPage {
     let amount = this.withdrawForm.get("amount").value;
     let accountNumber = this.atmServiceProvider.getAccountNumber();
 
-    this.atmServiceProvider.withDraw(accountNumber, amount).then (
-      (succ) => {
-        loader.dismiss();
-        let depositAlert = this.alertCtrl.create({
-          title: 'Withdraw Successful',
-          subTitle: "Account Number:" + accountNumber,
-          buttons: ['OK']
-        });
-        depositAlert.present();
-        this.navCtrl.pop();
-      }, 
-      (err) => {
-        let toast = this.toastCtrl.create({message: "Withdraw Unsuccessful!", duration: 3000});
-        loader.dismiss();
-        toast.present();
-        this.navCtrl.pop();
-      }
-    );
-
+    //validation for withdrawal amount
+    if(amount <= this.atmServiceProvider.currentBalance){
+      this.atmServiceProvider.withDraw(accountNumber, amount).then (
+        (succ) => {
+          loader.dismiss();
+          let depositAlert = this.alertCtrl.create({
+            title: 'Withdraw Successful',
+            subTitle: "Account Number:" + accountNumber,
+            buttons: ['OK']
+          });
+          depositAlert.present();
+          this.navCtrl.pop();
+        }, 
+        (err) => {
+          let toast = this.toastCtrl.create({message: "Withdraw Unsuccessful!", duration: 3000});
+          loader.dismiss();
+          toast.present();
+          this.navCtrl.pop();
+        }
+      );
+    }else{
+      let toast = this.toastCtrl.create({message: "Amount exceeds available balance!", duration: 3000});
+          loader.dismiss();
+          toast.present();
+    }
   }
 
   ionViewDidLoad() {
