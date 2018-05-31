@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Atm Project</ion-title>
+    <ion-title>The Belize Bank Limited ATM</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,16 +16,16 @@
 
 <form [formGroup]="myForm" (ngSubmit)="doLogin()">
     <ion-list>
-      <ion-label>Account Number</ion-label>
+      <ion-label>Account</ion-label>
       <ion-item>
-        <input type="text" placeholder="Account Number" formControlName="accountNumber">
+        <ion-input type="text" placeholder="Account Number" formControlName="accountNumber"></ion-input>
       </ion-item>
-      <ion-label>Pin Number</ion-label>
+      <ion-label>Password</ion-label>
       <ion-item>
-        <input type="password" placeholder="Pin Number" formControlName="pinNumber">
+        <ion-input type="password" placeholder="Pin Number" formControlName="pinNumber"></ion-input>
       </ion-item>
       <div>
-        <button ion-button black type="submit" [disabled]="!myForm.valid">Login</button>
+        <button ion-button block type="submit" [disabled]="!myForm.valid">Login</button>
       </div>
     </ion-list>
 </form>

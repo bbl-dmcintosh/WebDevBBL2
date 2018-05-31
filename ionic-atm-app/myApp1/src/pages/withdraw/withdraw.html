@@ -17,6 +17,10 @@
 
   <h1>Perform a withdrawal</h1>
 
+  <p>
+    Current Balance is {{currentBalance | currency }}
+  </p>
+
   <ion-list>
 
       <form [formGroup]="withdrawForm" (ngSubmit)="makeAWithdrawal()">

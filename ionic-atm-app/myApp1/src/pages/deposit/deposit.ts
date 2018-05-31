@@ -33,30 +33,51 @@ export class DepositPage {
 
   makeADeposit(){
 
-    let loader = this.loadCtrl.create({content: 'Submitting'});
-    loader.present();
+    let confirm = this.alertCtrl.create({
+      title: 'Deposit Confirmation',
+      message: 'Are you sure you want to perform the deposit?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+            this.navCtrl.pop();
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Agree clicked');
 
-    let amount = this.depositForm.get("amount").value;
-    let accountNumber = this.atmserviceProvider.getAccountNumber();
+            let loader = this.loadCtrl.create({content: 'Submitting'});
+            loader.present();
 
-    this.atmserviceProvider.deposit(accountNumber, amount).then (
-      (succ) => {
-        loader.dismiss();
-        let depositAlert = this.alertCtrl.create({
-          title: 'Deposit Successful',
-          subTitle: "Account Number:" + accountNumber,
-          buttons: ['OK']
-        });
-        depositAlert.present();
-        this.navCtrl.pop();
-      }, 
-      (err) => {
-        let toast = this.toastCtrl.create({message: "Deposit Unsuccessful!", duration: 3000});
-        loader.dismiss();
-        toast.present();
-        this.navCtrl.pop();
-      }
-    );
+            let amount = this.depositForm.get("amount").value;
+            let accountNumber = this.atmserviceProvider.getAccountNumber();
+
+            this.atmserviceProvider.deposit(accountNumber, amount).then (
+              (succ) => {
+              loader.dismiss();
+              let depositAlert = this.alertCtrl.create({
+                  title: 'Deposit Successful',
+                  subTitle: "Account Number:" + accountNumber,
+                  buttons: ['OK']
+              });
+              depositAlert.present();
+              this.navCtrl.pop();
+              }, 
+              (err) => {
+                let toast = this.toastCtrl.create({message: "Deposit Unsuccessful!", duration: 3000});
+                loader.dismiss();
+                toast.present();
+                this.navCtrl.pop();
+              }
+            );
+          }
+        }
+      ]
+    });
+    confirm.present();
 
   }
 

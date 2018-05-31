@@ -44,8 +44,8 @@ public toastCtrl : ToastController) {
       (succ) => {
         loader.dismiss();
         let myAlert = this.alertCtrl.create({
-          title: 'Form Submitted',
-          subTitle: "Account Number:" + accountNumber,
+          title: 'Login Successful',
+          subTitle: "Account:" + accountNumber,
           buttons: ['OK']
         });
         myAlert.present();
